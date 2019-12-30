@@ -36,12 +36,16 @@ trialdur = 0
 #create window & fixation & sounds
 win = visual.Window(fullscr=False, allowGUI = True, monitor = 'testMonitor', units = 'deg')
 fixation = visual.PatchStim(win, color=-1, tex=None, mask='circle',size=0.2, units='deg')
-
+#corSnd = sound.Sound(2400, octave=14, secs=0.01)
+#incorSnd = sound.Sound(800, octave=7, secs=0.01)
+#corSnd.setVolume(0.7)
+#incorSnd.setVolume(0.7)
 
 #create mouse
 myMouse = event.Mouse(visible = True, win = win)
 myMouse.clickReset()
 event.clearEvents()
+#trial_clock.reset()
 buttons = myMouse.getPressed()
 
 
@@ -51,6 +55,13 @@ square1 = ShapeStim(win, vertices=SquareVert, fillColor='blue', lineWidth=0, siz
 square2 = ShapeStim(win, vertices=SquareVert, fillColor='green', lineWidth=0, size=5, pos=(5, 5.5))
 square3 = ShapeStim(win, vertices=SquareVert, fillColor='yellow', lineWidth=0, size=5, pos=(-5,5.5))
 square4 = ShapeStim(win, vertices=SquareVert, fillColor='red', lineWidth=0, size=5, pos=(5, -5.5))
+squares = [square1, square2, square3, square4]
+
+
+done = False
+nb_trials = 4
+counter = 0
+section = 0
 
 #define function that randomizes the trials (0=congruent, else or 1=incongruent). the function creates a lis, "order", to which it will append a number (either 0 or 1). Then it will shuffle the numbers in the list three times to be sure that the sequence of 0s and 1s is random.
 def trial_init(nb_of_trials):
@@ -67,8 +78,245 @@ def trial_init(nb_of_trials):
     random.shuffle(order)
     return(order)
 
-#define two functions: one for the first block (word name) and one for the second block (word color)
 
+def trial1(order, index): # word name
+    global word
+    global color
+    global acc
+    global trialdur
+    buttons = myMouse.getPressed()
+    if order[index]==0: # Congruent 
+        rdm_pair1 = key, val = random.choice(list(word_list.items()))
+        msg = visual.TextStim(win, text=key, color = (key))
+        word = key
+        color = key
+        clockRT.reset()
+        while buttons == [0,0,0]:
+            myMouse.clickReset()
+            buttons = myMouse.getPressed()
+            msg.draw()
+            square1.draw()
+            square2.draw()
+            square3.draw()
+            square4.draw()
+            win.update()
+        trialdur = clockRT.getTime()
+        if key == 'Blue':
+            if myMouse.isPressedIn(square1):
+                print("Success")
+                acc = 1
+            else:
+                print("Failure")
+                acc = 0
+        if key == 'Green':
+            if myMouse.isPressedIn(square2):
+                print("Success")
+                acc = 1
+            else:
+                print("Failure")
+                acc = 0
+        if key == 'Yellow':
+            if myMouse.isPressedIn(square3):
+                print("Success")
+                acc = 1
+            else:
+                print("Failure")
+                acc = 0
+        if key == 'Red':
+            if myMouse.isPressedIn(square4):
+                print("Success")
+                acc = 1
+            else:
+                print("Failure")
+                acc = 0
+                
+        buttons = myMouse.getPressed()
+        
+    if order[index]==1: #Incongruent
+        rdm_pair1 = key1, val1 = random.choice(list(word_list.items()))
+        rdm_pair2 = key2, val2 = random.choice(list(word_list.items()))
+        while rdm_pair1==rdm_pair2:
+            rdm_pair2 = key2, val2 = random.choice(list(word_list.items()))
+        msg = visual.TextStim(win, text=key1, color = (key2))
+        word = key1
+        color = key2
+        clockRT.reset()
+        while buttons == [0,0,0]:
+            myMouse.clickReset()
+            buttons = myMouse.getPressed()
+            msg.draw()
+            square1.draw()
+            square2.draw()
+            square3.draw()
+            square4.draw()
+            win.update()
+        trialdur = clockRT.getTime()
+        if key1 == 'Blue':
+            if myMouse.isPressedIn(square1):
+                print("Success")
+                acc = 1
+            else:
+                print("Failure")
+                acc = 0
+        if key1 == 'Green':
+            if myMouse.isPressedIn(square2):
+                print("Success")
+                acc = 1
+            else:
+                print("Failure")
+                acc = 0
+        if key1 == 'Yellow':
+            if myMouse.isPressedIn(square3):
+                print("Success")
+                acc = 1
+            else:
+                print("Failure")
+                acc = 0
+        if key1 == 'Red':
+            if myMouse.isPressedIn(square4):
+                print("Success")
+                acc = 1
+            else:
+                print("Failure")
+                acc = 0
+                
+        buttons = myMouse.getPressed()
+    return
+
+
+def trial2(order, index): # word color
+    global word
+    global color
+    global acc
+    global trialdur
+
+    buttons = myMouse.getPressed()
+    if order[index]==0: #Congruent
+        rdm_pair1 = key, val = random.choice(list(word_list.items()))
+        msg = visual.TextStim(win, text=key, color = (key))
+        word = key
+        color = key
+        clockRT.reset()
+        while buttons == [0,0,0]:
+            myMouse.clickReset()
+            buttons = myMouse.getPressed()
+            msg.draw()
+            square1.draw()
+            square2.draw()
+            square3.draw()
+            square4.draw()
+            win.update()
+        trialdur = clockRT.getTime()
+        if key == 'Blue':
+            if myMouse.isPressedIn(square1):
+                print("Success")
+                acc = 1
+            else:
+                print("Failure")
+                acc = 0
+        if key == 'Green':
+            if myMouse.isPressedIn(square2):
+                print("Success")
+                acc = 1
+            else:
+                print("Failure")
+                acc = 0
+        if key == 'Yellow':
+            if myMouse.isPressedIn(square3):
+                print("Success")
+                acc = 1
+            else:
+                print("Failure")
+                acc = 0
+        if key == 'Red':
+            if myMouse.isPressedIn(square4):
+                print("Success")
+                acc = 1
+            else:
+                print("Failure")
+                acc = 0
+                
+        buttons = myMouse.getPressed()
+        
+    if order[index]==1: #Incongruent
+        rdm_pair1 = key1, val1 = random.choice(list(word_list.items()))
+        rdm_pair2 = key2, val2 = random.choice(list(word_list.items()))
+        while rdm_pair1==rdm_pair2:
+            rdm_pair2 = key2, val2 = random.choice(list(word_list.items()))
+        msg = visual.TextStim(win, text=key1, color = (key2))
+        word = key1
+        color = key2
+        clockRT.reset()
+        while buttons == [0,0,0]:
+            myMouse.clickReset()
+            buttons = myMouse.getPressed()
+            msg.draw()
+            square1.draw()
+            square2.draw()
+            square3.draw()
+            square4.draw()
+            win.update()
+        trialdur = clockRT.getTime()
+        if key2 == 'Blue':
+            if myMouse.isPressedIn(square1):
+                print("Success")
+                acc = 1
+            else:
+                print("Failure")
+                acc = 0
+        if key2 == 'Green':
+            if myMouse.isPressedIn(square2):
+                print("Success")
+                acc = 1
+            else:
+                print("Failure")
+                acc = 0
+        if key2 == 'Yellow':
+            if myMouse.isPressedIn(square3):
+                print("Success")
+                acc = 1
+            else:
+                print("Failure")
+                acc = 0
+        if key2 == 'Red':
+            if myMouse.isPressedIn(square4):
+                print("Success")
+                acc = 1
+            else:
+                print("Failure")
+                acc = 0
+                
+        buttons = myMouse.getPressed()
+    return
+
+
+while not done:
+    
+    order = trial_init(nb_trials)
+    
+    for i in range(len(order)):
+        trial = "WordName"
+        trial1(order, i)
+        fixation.draw()
+        win.flip()
+        core.wait(1)
+        core.checkPygletDuringWait = False
+        buttons = myMouse.getPressed()
+        dataFile.write('%s %s %s %s %s\n'%(trial, word, color, acc, round(trialdur, 3)))
+    
+    order = trial_init(nb_trials)
+    
+    for i in range(len(order)):
+        trial = "WordColor"
+        trial2(order, i)
+        fixation.draw()
+        win.flip()
+        core.wait(1)
+        core.checkPygletDuringWait = False
+        buttons = myMouse.getPressed()
+        dataFile.write('%s %s %s %s %s\n'%(trial, word, color, acc, round(trialdur, 3)))
+
+    done = True
 
 win.close()
 core.quit()
