@@ -31,3 +31,7 @@ I created the four squares (blue, red, green, yellow) which will be invariable i
 Note that I only created the squares, I didnt draw them yet. 
 
 # Defining the important functions
+
+## The trial_init function
+
+
