@@ -34,4 +34,25 @@ Note that I only created the squares, I didnt draw them yet.
 
 ## The trial_init function
 
+This function takes as an argument the number of trials. 
+What I'm doing is creating an empty list, 'order', which I will fill. The way I fill this list is the following: I take a variable i in the range 0-2 (which technically means it's either 0 or 1). If i turns out to be 0, we will append the 0 to the list for x number of times, x being the number of trials that we would have defined. If i turns out to be 1, we will append 1 to the list for x number of times. The list 'order' now contains x times 0 and x times 1 in that order. So I now shuffle the numbers in the list three times so that the sequence of 0s and 1s is randomized. What this function is doing is specifying whether a trial is congruent or incongruent. A 0 indicates a congruent trial and a 1 indicates an incongruent trial. This will be helpful for the rest of the code. 
 
+## The trial1 function
+
+This function takes care of the word name condition. First, what I'm doing is redefining the relevant variables inside the function by specufying that they are global which means I could also access them from outside the function. I also redefine the mouse press event. Then, my function is divided in two: if I get a 0 (congruent trial) or if I get a 1 (incongruent trial) in the list. 
+In the congruent trials, what happens is the following: I define a variable containing two values (a tuple) extracted from the previously defined dictionary of colors ('word_list') randomly. Then, I specify that the color name that will be printed in the middle of the screen will be congruent: its name and color will be the same ('red' written in red for example) since we define both variables by refering to the same pair of color-name (rdm_pair1). After this, I specify that as long as the mouse has not been pressed, the message (the color name) and the square will be printed/drawn in the window. Finally, I specify the conditions for a correct and a wrong answer: if the color of the square the participant clicked on matches the name of the color printed in the center of the screen, then it is a correct trial. Otherwise, it is an incorrect trial. The accuracy is stored in the variable 'acc'.
+Now onto the incongruent trials. Here, it gets more complicated because instead of defining one random pair of word name and word color, we define two and we combine them. This means that we first randomly chose one pair of color and color name from word_list which we store in 'rdm_pair1', then we chose another pair and store it in 'rdm_pair2'. If rdm_pair1 and rdm_pair2 happen to be the same, then we chose another pair to store in rdm_pair2. After doing this, we specify the parameters of the message that will be printed on the screen (the color name). Unlike the congruent trials, here the text (the word name) will be a value stored in rdm_pair1 (key1) and the color (word color) will be a value stored in rdm_pair2. This way, the word name and the word color do not match. Then, the rest of the code for incongruent trials is the same as the one for congruent trials (mouse event, stimuli in window, accuracy).
+
+## The trial2 function
+
+This function is pretty similar to the previous one except that here, we are looking at the color of the word printed in the middle of the 4 squares, not at its name. So, what changes here is how we define a correct response. The rest is the same for congruent vs incongruent trials. A correct response here is when the color of the square the participant clicked on matches the color of the word in the middle of the screen.  
+
+# Bringing it all together
+
+After defining the variables, the stimuli, the events, the functions, ... we now have to use all of these in order to create the experiment. For this, I used a while loop. While we hace not gone through each trial in the list (0s and 1s), the loop will keep going. For the index i in the range of the length of the 'order' list (which contains all the 0s and 1s in ramdon order, which indicates whether the trial is congruent or not), we will define this trial as a 'wordname' trial and call the function trial1. It will take as arguments the 'order' list and an index i of that list. It will aslo draw a fixation point between one trial and the next, and save all the important variables to the data file (trial name, word name, word color, accuracy, response time). 
+A second similar 'for' loop is also defined for the 'wordcolor' trials and it will call the function trial2.
+Finally, we close the window and quit the experiment.
+
+# My prior programming experience
+
+Before this class, I have had very basic experience in programming. I did the baccalauréat spécialité informatique et sciences du numérique where I learned basic python skills. Then, during my bachelor degree in psychology, I worked with a psycholgist who guided me through the programming of a Flanker task on psychopy. 
