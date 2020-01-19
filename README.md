@@ -1,6 +1,6 @@
 # PCBS_Reverse_Stroop
 
-The aim of this project is to create a reverse Stroop task. It is a variant of the Stroop task. The participants are shown a word (the name of a color) in either the same color or a different one. Around the word are 4 squares: one is the color of the word, one is the color of written color, and the 2 remaining squares are random colors. 
+The aim of this project is to create a reverse Stroop task using PsychoPy. It is a variant of the Stroop task. The participants are shown a word (the name of a color) in either the same color or a different one. Around the word are 4 squares: one is the color of the word, one is the color of written color, and the 2 remaining squares are random colors. 
 The experiment is composed of two blocks. 
 In the first one, participants will be asked to click on the square whose color is the same as the written color. 
 In the second one, participants will be asked to click on the square whose color is the same as the color of the word.
@@ -29,6 +29,10 @@ For stimuli to be able to appear on the screen, we need to define a window. This
 
 I created the four squares (blue, red, green, yellow) which will be invariable in size, shape, and placement on the screen. Randomizing the placement of the squares on the screen would have made it way too hard for me to handle considering that I am already randomizing other variables in my experiment and that my skills in programming are basic. 
 Note that I only created the squares, I didnt draw them yet. 
+
+# The instructions
+
+Instructions will be given to the participants at the beginning of the experiment and at the beginning of each block. They will be able to start the following block whenever they are ready by pressing on the 'enter' key. The instructions indicate what block they are in and what they will have to do consequently. When they are in the WordName condition, they have to click on the square that matches the name of the word in the center of the screen. When they are in the WordColor condition, they have to click on the square that matches the color of the word in the center of the screen. 
 
 # Defining the important functions
 
