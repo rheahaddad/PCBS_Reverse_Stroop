@@ -290,6 +290,11 @@ while not done:
     
     order = trial_init(nb_trials)
     
+    instructions = TextBox.setText(win, "This is a reverse stroop task. You will have to click on the appropriate colored square depending on the instructions you will get. Press enter to start.")
+    instructions.draw()
+    win.flip()
+        
+
     for i in range(len(order)):
         trial = "WordName"
         trial1(order, i)
