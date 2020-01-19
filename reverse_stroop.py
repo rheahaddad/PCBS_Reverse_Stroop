@@ -6,8 +6,7 @@ from psychopy.tools.filetools import fromFile, toFile
 
 
 #user interface where we ask for ID and set the parameters
-params = {'ID number':'1',
-	 'frameRate':60,'duration':2, 'ISI': 0.02, 'fp': 1,'task':'Reverse_Stroop_Task'}
+params = {'ID number':'1','task':'Reverse_Stroop_Task'}
 
 
 word_list = {'Blue':'0,0,1', 'Red':'1,0,0', 'Green':'0,1,0', 'Yellow':'1,1,0.6'}
@@ -55,7 +54,7 @@ squares = [square1, square2, square3, square4]
 
 
 done = False
-nb_trials = 4
+nb_trials = 16
 counter = 0
 section = 0
 
@@ -290,12 +289,40 @@ while not done:
     
     order = trial_init(nb_trials)
     
-    instructions = TextBox.setText(win, "This is a reverse stroop task. You will have to click on the appropriate colored square depending on the instructions you will get. Press enter to start.")
-    instructions.draw()
+#    instructions = TextBox.setText(win, "This is a reverse stroop task. You will have to click on the appropriate colored square depending on the instructions you will get. Press enter to start.")
+#    instructions.draw()
+#    win.flip()
+        
+    instr = visual.TextStim(win, 'This is a reverse stroop task. You will have to click on the appropriate colored square depending on the instructions you will get. Press enter to start.')
+    instr.setAutoDraw(True)
+    win.flip()
+    continuing = True
+    while continuing:
+        pygKey = event.waitKeys()[0]
+        if pygKey == 'return':
+            continuing = False
+        win.flip()
+    
+    instr.setAutoDraw(False)
+    win.flip()
+    
+    
+
+    instr = visual.TextStim(win, 'This is the WordName condition. You will now have to click on the colored square that matches the name of the word you will see in the center of your screen. Press enter to start.')
+    instr.setAutoDraw(True)
+    win.flip()
+    continuing = True
+    while continuing:
+        pygKey = event.waitKeys()[0]
+        if pygKey == 'return':
+            continuing = False
+        win.flip()
+    
+    instr.setAutoDraw(False)
     win.flip()
         
-
     for i in range(len(order)):
+        
         trial = "WordName"
         trial1(order, i)
         fixation.draw()
@@ -306,6 +333,19 @@ while not done:
         dataFile.write('%s %s %s %s %s\n'%(trial, word, color, acc, round(trialdur, 3)))
     
     order = trial_init(nb_trials)
+
+    instr = visual.TextStim(win, 'This is the WordColor condition. You will now have to click on the colored square that matches the color of the word you will see in the center of your screen. Press enter to start.')
+    instr.setAutoDraw(True)
+    win.flip()
+    continuing = True
+    while continuing:
+        pygKey = event.waitKeys()[0]
+        if pygKey == 'return':
+            continuing = False
+        win.flip()
+    
+    instr.setAutoDraw(False)
+    win.flip()
     
     for i in range(len(order)):
         trial = "WordColor"
@@ -321,11 +361,3 @@ while not done:
 
 win.close()
 core.quit()
-
-
-
-
-
-
-
-
