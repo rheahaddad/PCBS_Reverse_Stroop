@@ -36,16 +36,12 @@ trialdur = 0
 #create window & fixation & sounds
 win = visual.Window(fullscr=False, allowGUI = True, monitor = 'testMonitor', units = 'deg')
 fixation = visual.PatchStim(win, color=-1, tex=None, mask='circle',size=0.2, units='deg')
-#corSnd = sound.Sound(2400, octave=14, secs=0.01)
-#incorSnd = sound.Sound(800, octave=7, secs=0.01)
-#corSnd.setVolume(0.7)
-#incorSnd.setVolume(0.7)
+
 
 #create mouse
 myMouse = event.Mouse(visible = True, win = win)
 myMouse.clickReset()
 event.clearEvents()
-#trial_clock.reset()
 buttons = myMouse.getPressed()
 
 
