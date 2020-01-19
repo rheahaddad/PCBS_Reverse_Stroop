@@ -14,7 +14,7 @@ At the start of the experiment, a dialog box will appear on the screen. It will 
 
 # The data file
 
-An csv file will be created which will contain the information collected during the experiment. 
+A csv file will be created which will contain the information collected during the experiment. 
 The first parameter that will be included in this file is the block or trial. A column called "Trial" will be created and will specify whether the folowing information (RT, accuracy, ...) concern the first block (word name) or the second block (word color). 
 The second parameter is the word name. It will allow us to see what word was printed in the middle of the screen during each trial. 
 The third parameter is the word color. It will allow us to see what color the word was printed in, in the middle of the screen during each trial. 
